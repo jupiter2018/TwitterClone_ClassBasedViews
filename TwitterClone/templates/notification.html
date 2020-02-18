@@ -1,0 +1,31 @@
+<h1>Hi {{username}}</h1>
+<hr>
+<div id="nav">
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile'%}">Home |</a>
+        <a href="{% url 'tweet'%}">Tweets |</a>
+        <!-- <a href="">Notifications |</a> -->
+        <a href="{% url 'myprofile'%}">My Profile |</a>
+        <a href="{% url 'logout'%}">Logout |</a>
+        
+    {% else %}
+        <a href="{% url 'profile'%}">Home |</a>
+        <a href="{% url 'login'%}">Login |</a>
+        <a href="{% url 'register'%}">Register |</a>
+    {% endif %}
+</div>
+
+<div>
+    {% if notifications == 0 %}
+    <h3>You have no notifications at this time!</h3>
+    {% else %}
+        {% for notification in all_notifications %}
+                <h4>Posted by {{notification.tweetfrom.author}} on {{notification.tweetfrom.created}}</h4>
+                <p>{{notification.tweetfrom.content}}</p>
+                <hr>
+        {% endfor %}
+        
+    
+    {% endif %}
+    
+</div>

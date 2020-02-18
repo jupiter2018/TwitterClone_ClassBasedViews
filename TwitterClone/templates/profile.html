@@ -1,0 +1,44 @@
+<h1>Welcome to TwitterClone</h1>
+<hr>
+<div id="nav">
+    {% if user.is_authenticated %}
+        <a href="{% url 'profile'%}">Home |</a>
+        <a href="{% url 'tweet'%}">Tweets |</a>
+        <a href="/notifications">Notifications {{notifications}}|</a>
+        <a href="{% url 'myprofile'%}">My Profile |</a>
+        <a href="{% url 'logout'%}">Logout |</a>
+        
+    {% else %}
+        <a href="{% url 'profile'%}">Home |</a>
+        <a href="{% url 'login'%}">Login |</a>
+        <a href="{% url 'register'%}">Register |</a>
+    {% endif %}
+</div>
+        <div style="float:left;width:20%;height:300px;margin: 50px;border:1px solid lightblue;text-align: center;">
+          <p>{{userprofile}}</p>
+          <p><a href="{% url 'myprofile'%}">@{{userprofile}}</a></p>
+          <p>Following: {{following}}</p>
+          <p>Tweets: {{logged_in_user_tweet_count}}</p>
+        </div>
+        
+        <div style="float:left;width:40%;margin-top:50px">
+                {% for alltweet in followTweets %}
+                        <h4>Posted by <a href="/profile/{{alltweet.author}}">{{alltweet.author}}</a> on <a href="tweet/{{alltweet.id}}">{{alltweet.created}}</a></h4>
+                        <p>{{alltweet.content}}</p>
+                        <hr>
+                        
+                {% endfor %}
+        </div>
+        
+        <div style="float:left;width:10%;margin: 50px;border:1px solid lightblue;text-align: center;">
+                <h3>People you can follow</h3>
+                {% for person in peopleToFollow %}
+                        
+                        <h4>{{person.user}}</h4>
+                        <button type='submit' value='Follow'><a href="follow/{{person.user}}/" style="text-decoration: none;">Follow</a></button>
+                        <hr>
+                        
+                {% endfor %}
+
+        </div>
+   

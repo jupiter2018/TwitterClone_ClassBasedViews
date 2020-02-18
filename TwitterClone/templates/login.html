@@ -1,0 +1,16 @@
+<div style="float:left; width:300px; height:500px;font-size: 25px;margin-left: 50px;">
+    <p>
+       <h2>Welcome to TwitterClone!</h2> <h3>Login to start posting and chat with your friends</h3>
+    </p>
+    <hr>
+    <div><h4>Need an account? <a href="{% url 'register' %}">Sign Up</a></h4></div>
+</div>
+
+
+<div style="float:left; width:100px; height:80px; margin-left:100px;font-size: 20px;"><h3>Sign In</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login">
+</form>
+</div>

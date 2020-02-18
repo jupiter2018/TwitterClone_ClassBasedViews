@@ -1,0 +1,7 @@
+<div><h3>Join Today</h3></div>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register">
+</form>
+<div><h4>Already have an account? <a href="/">Login here</a></h4></div>
